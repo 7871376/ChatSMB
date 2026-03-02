@@ -22,5 +22,69 @@ ChatSMB
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:ChatSMB.My.Resources.Resources.pause">
+<summary>
+  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+</summary>
+</member>
+<member name="P:ChatSMB.My.Resources.Resources.powerup">
+<summary>
+  Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+</summary>
+</member>
+<member name="P:ChatSMB.My.Resources.Resources.star_regular">
+<summary>
+  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+</summary>
+</member>
+<member name="M:ChatSMB.ChatSMB.ButtonSend_Click(System.Object,System.EventArgs)">
+ <summary>
+ Send button event handler
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:ChatSMB.ChatSMB.TxtSend_GotFocus(System.Object,System.EventArgs)">
+ <summary>
+ request text field focus event handler
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+</member>
+<member name="M:ChatSMB.ChatSMB.Send">
+ <summary>
+ Send a message to the LLM
+ </summary>
+ <returns>Task</returns>
+</member>
+<member name="M:ChatSMB.ChatSMB.GetApiKey">
+ <summary>
+ Get the API Key from session
+ </summary>
+ <returns>String</returns>
+</member>
+<member name="M:ChatSMB.ChatGptClient.SendMessageAsync(System.String,System.Double)">
+ <summary>
+ Send the message to the LLM
+ </summary>
+ <param name="userMessage"></param>
+ <param name="temperature"></param>
+ <returns></returns>
+</member>
+<member name="M:ChatSMB.ChatGptClient.ClearConversation">
+ <summary>
+ Clear all messages.
+ </summary>
+</member>
+<member name="M:ChatSMB.ChatGptClient.PlayErrorSound">
+ <summary>
+ Plays a wav file when something goes amiss.
+ </summary>
+</member>
+<member name="M:ChatSMB.ChatGptClient.Dispose">
+ <summary>
+ tidy up.
+ </summary>
+</member>
 </members>
 </doc>

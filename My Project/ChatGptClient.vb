@@ -1,4 +1,5 @@
-﻿Imports System.Net.Http
+﻿Imports System.Media
+Imports System.Net.Http
 Imports System.Text
 Imports System.Text.Json
 Imports ChatSMB.SessionManager
@@ -65,7 +66,8 @@ Public Class ChatGptClient
         Dim responseString = Await response.Content.ReadAsStringAsync()
 
         If Not response.IsSuccessStatusCode Then
-
+            Call PlayErrorSound()
+            Call ShowErrorInStatusBar()
             assistantReply = String.Format("OpenAI Error: {0}", response.ReasonPhrase)
 
         Else
@@ -88,10 +90,34 @@ Public Class ChatGptClient
 
     End Function
 
+    ''' <summary>
+    ''' Clear all messages.
+    ''' </summary>
     Public Sub ClearConversation()
         _messages.Clear()
     End Sub
 
+    ''' <summary>
+    ''' Plays a wav file when something goes amiss.
+    ''' </summary>
+    Private Sub PlayErrorSound()
+        Dim player As New SoundPlayer(My.Resources.pause)
+        player.Play()
+    End Sub
+
+    Private Sub ShowErrorInStatusBar()
+        Dim frm As ChatSMB = TryCast(Application.OpenForms("ChatSMB"), ChatSMB)
+
+        If frm IsNot Nothing Then
+            frm.StatusText = "Error"
+        End If
+
+    End Sub
+
+
+    ''' <summary>
+    ''' tidy up.
+    ''' </summary>
     Public Sub Dispose() Implements IDisposable.Dispose
         _httpClient.Dispose()
     End Sub

@@ -2,6 +2,7 @@
 
     Public _APIKey As String = String.Empty
     Public _SendCount As Integer = 1
+
     Public _Version As String = String.Empty
 
     ' Private constructor prevents external instantiation (singleton)

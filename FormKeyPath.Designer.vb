@@ -24,10 +24,10 @@ Partial Class FormKeyPath
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormKeyPath))
         Me.Panel0 = New System.Windows.Forms.Panel()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TxtPath = New System.Windows.Forms.TextBox()
-        Me.LabelPath = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.LabelPath = New System.Windows.Forms.Label()
+        Me.TxtPath = New System.Windows.Forms.TextBox()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Panel0.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -44,28 +44,6 @@ Partial Class FormKeyPath
         Me.Panel0.Size = New System.Drawing.Size(1048, 96)
         Me.Panel0.TabIndex = 0
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'TxtPath
-        '
-        Me.TxtPath.Font = New System.Drawing.Font("Diary of an 8-bit mage", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPath.Location = New System.Drawing.Point(10, 35)
-        Me.TxtPath.Name = "TxtPath"
-        Me.TxtPath.Size = New System.Drawing.Size(859, 23)
-        Me.TxtPath.TabIndex = 0
-        '
-        'LabelPath
-        '
-        Me.LabelPath.AutoSize = True
-        Me.LabelPath.Font = New System.Drawing.Font("Diary of an 8-bit mage", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPath.Location = New System.Drawing.Point(17, 13)
-        Me.LabelPath.Name = "LabelPath"
-        Me.LabelPath.Size = New System.Drawing.Size(125, 16)
-        Me.LabelPath.TabIndex = 1
-        Me.LabelPath.Text = "Key File Path"
-        '
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Diary of an 8-bit mage", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -76,6 +54,28 @@ Partial Class FormKeyPath
         Me.Button1.Text = "Search"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'LabelPath
+        '
+        Me.LabelPath.AutoSize = True
+        Me.LabelPath.Font = New System.Drawing.Font("Diary of an 8-bit mage", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPath.Location = New System.Drawing.Point(17, 13)
+        Me.LabelPath.Name = "LabelPath"
+        Me.LabelPath.Size = New System.Drawing.Size(499, 16)
+        Me.LabelPath.TabIndex = 1
+        Me.LabelPath.Text = "Search for the API key file. Click the button to begin."
+        '
+        'TxtPath
+        '
+        Me.TxtPath.Font = New System.Drawing.Font("Diary of an 8-bit mage", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPath.Location = New System.Drawing.Point(10, 35)
+        Me.TxtPath.Name = "TxtPath"
+        Me.TxtPath.Size = New System.Drawing.Size(859, 23)
+        Me.TxtPath.TabIndex = 0
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'FormKeyPath
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 12.0!)
@@ -85,6 +85,7 @@ Partial Class FormKeyPath
         Me.Font = New System.Drawing.Font("Diary of an 8-bit mage", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.MaximumSize = New System.Drawing.Size(1083, 152)
         Me.Name = "FormKeyPath"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

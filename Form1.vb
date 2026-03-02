@@ -1,6 +1,71 @@
-﻿Imports ChatSMB.My.MySettings
+﻿
+Imports ChatSMB.My.MySettings
 Imports ChatSMB.SessionManager
+Imports System.Media
 Public Class ChatSMB
+
+#Region " Properties "
+
+    Public Property StatusText As String
+        Get
+            Return ToolStripStatusLabel1.Text
+        End Get
+        Set(value As String)
+            ToolStripStatusLabel1.Text = value
+        End Set
+    End Property
+#End Region
+
+
+#Region " Event Handlers "
+
+    Protected Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Icon = My.Resources.star_regular
+    End Sub
+
+    ''' <summary>
+    ''' Send button event handler
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ButtonSend_Click(sender As Object, e As EventArgs) Handles ButtonSend.Click
+        Dim intSendCount As Integer = SessionManager.Instance.SendCount
+
+        ButtonSend.Enabled = False
+        Call Send()
+        ButtonSend.Enabled = True
+        TxtSend.Text = ""
+
+        'show the current model in the TSSL
+
+        If intSendCount > 0 Then
+            Me.StatusText = "Model: " & SessionManager.Instance.Version
+        End If
+
+    End Sub
+
+    ''' <summary>
+    ''' request text field focus event handler
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub TxtSend_GotFocus(sender As Object, e As EventArgs) Handles TxtSend.GotFocus
+        Dim intSendCount As Integer = SessionManager.Instance.SendCount
+        If SessionManager.Instance.APIKey.Trim() = String.Empty Then
+            Using frm As New FormKeyPath()
+                frm.ShowDialog()
+            End Using
+        Else
+            If intSendCount = 1 Then
+                Me.StatusText = "API Key selected."
+            End If
+
+        End If
+    End Sub
+
+#End Region
+
+#Region " Methods "
 
     ''' <summary>
     ''' Send a message to the LLM
@@ -25,43 +90,15 @@ Public Class ChatSMB
     ''' <summary>
     ''' Get the API Key from session
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>String</returns>
     Function GetApiKey() As String
         Return SessionManager.Instance.APIKey
     End Function
 
-    Private Sub ButtonSend_Click(sender As Object, e As EventArgs) Handles ButtonSend.Click
-        Dim intSendCount As Integer = SessionManager.Instance.SendCount
-
-        ButtonSend.Enabled = False
-        Call Send()
-        ButtonSend.Enabled = True
-        TxtSend.Text = ""
-
-        'show the current model in the TSSL
-        With ToolStripStatusLabel1
-            If intSendCount > 0 Then
-                .Text = "Model: " & SessionManager.Instance.Version
-            End If
-
-        End With
-
-
+    Private Sub PlayStartupSound()
+        Dim player As New SoundPlayer(My.Resources.powerup)
+        player.Play()
     End Sub
-
-    Private Sub TxtSend_GotFocus(sender As Object, e As EventArgs) Handles TxtSend.GotFocus
-        Dim intSendCount As Integer = SessionManager.Instance.SendCount
-        If SessionManager.Instance.APIKey.Trim() = String.Empty Then
-            Using frm As New FormKeyPath()
-                frm.ShowDialog()
-            End Using
-        Else
-            With ToolStripStatusLabel1
-                If intSendCount = 1 Then
-                    .Text = "API Key selected."
-                End If
-            End With
-        End If
-    End Sub
+#End Region
 
 End Class
