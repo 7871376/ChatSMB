@@ -127,6 +127,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\ChatGptClient.vb" />
+    <Compile Include="My Project\IChatGptClient.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

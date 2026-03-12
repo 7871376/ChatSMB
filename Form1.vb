@@ -4,6 +4,12 @@ Imports ChatSMB.SessionManager
 Imports System.Media
 Public Class ChatSMB
 
+#Region " Declarations "
+
+    Private Client As IChatGptClient
+
+#End Region
+
 #Region " Properties "
 
     Public Property StatusText As String
@@ -78,11 +84,9 @@ Public Class ChatSMB
         Dim strSeparator As String = "------------------------------------------------------------------------"
         Dim strQuery As String = TxtSend.Text.Trim()
 
-        Using client As New ChatGptClient(strApiKey, systemPrompt:=TxtSend.Text.Trim())
-
-            Dim strReply = Await client.SendMessageAsync(strQuery)
+        Using Client As New ChatGptClient(strApiKey, systemPrompt:=TxtSend.Text.Trim())
+            Dim strReply = Await Client.SendMessageAsync(strQuery)
             LabelReceived.Text &= strQuery & vbCrLf & vbCrLf & strReply & vbCrLf & vbCrLf & strSeparator & vbCrLf & vbCrLf
-
         End Using
 
     End Function

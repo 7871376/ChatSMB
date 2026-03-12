@@ -5,6 +5,7 @@ Imports System.Text.Json
 Imports ChatSMB.SessionManager
 
 Public Class ChatGptClient
+    Implements IChatGptClient
     Implements IDisposable
 
     Private ReadOnly _httpClient As HttpClient
@@ -41,7 +42,8 @@ Public Class ChatGptClient
     ''' <param name="temperature"></param>
     ''' <returns></returns>
     Public Async Function SendMessageAsync(userMessage As String,
-                                            Optional temperature As Double = 0.7) As Task(Of String)
+                                            Optional temperature As Double = 0.7) As Task(Of String) _
+        Implements IChatGptClient.SendMessageAsync
 
         Dim assistantReply
 
@@ -77,11 +79,11 @@ Public Class ChatGptClient
             Dim intSendCount As Integer = SessionManager.Instance.SendCount
             SessionManager.Instance.SendCount = (intSendCount + 1)
 
-            assistantReply = result.Choices(0).Message.Content
+            assistantReply = result.choices(0).message.content
 
             _messages.Add(New ChatMessage With {
-                .Role = "assistant",
-                .Content = assistantReply
+                .role = "assistant",
+                .content = assistantReply
             })
 
         End If
@@ -93,7 +95,9 @@ Public Class ChatGptClient
     ''' <summary>
     ''' Clear all messages.
     ''' </summary>
-    Public Sub ClearConversation()
+    Public Sub ClearConversation() _
+        Implements IChatGptClient.ClearConversation
+
         _messages.Clear()
     End Sub
 
